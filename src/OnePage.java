@@ -1,7 +1,7 @@
-import java.util.Arrays;
+import java.io.*;
 
 class Node {
-    String data;
+    String data; // or object instead of string
     Node nextNode;
     Node prevNode;
 }
@@ -27,7 +27,7 @@ class CircularDoublyLL {
         }
     }
 
-    public void displayPlayist() {
+    public void displayPage() {
         Node currentNode = head;
         if (head == null) {
             System.out.println("Page is empty!");
@@ -44,11 +44,28 @@ class CircularDoublyLL {
 }
 
 public class OnePage {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
         CircularDoublyLL Page = new CircularDoublyLL();
 
-        String str = "Ali/Mohammad/Sahar/#";
+        File file = new File("C:\\Users\\ACER\\OneDrive\\Desktop\\txtEditor\\src\\Example.txt");
+        BufferedReader br = new BufferedReader(new FileReader(file));
         String[] nodes;
+        String st;
+
+        while ((st = br.readLine()) != null) {
+            System.out.println(st);
+            nodes = st.split("/");
+            for (String a : nodes) {
+                Page.insertLast(a);
+                // System.out.println(a);
+            }
+
+        }
+        Page.displayPage();
+
+        // String str = "Ali/Mohammad/Sahar/#";
+
         /*
          * for (int i = 0; i < str.length(); i++) {
          * 
@@ -64,13 +81,7 @@ public class OnePage {
          */
 
         // System.out.println(Arrays.toString(nodes));
-        nodes = str.split("/");
-        for (String a : nodes) {
-            Page.insertLast(a);
-            //System.out.println(a);
-        }
+        // nodes = str.split("/");
 
-       
-        Page.displayPlayist();
     }
 }
