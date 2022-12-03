@@ -1,1 +1,11 @@
-If you think that your hand writting is bad then what is bad is your/ spelling and not necessarily your hand writing. "Writting" is a misspelling. "Writing" is correct./Writing is a process of representing a language with symbols or letters in a text or document with meaning./#
+
+This virtual glimpse into the cosmoss past is the result of CoDaIII, the third iteration of the Cosmic/
+Dawn Project which traces the history of the universe, beginning with the cosmic dark ages about/
+10 million years after the Big Bang. At that point, hot gas produced at the very beginning of time,/
+about 13.8 billion years ago, had cooled to a featureless cloud devoid of light, says astronomer Paul/
+Shapiro of the University of Texas at Austin.document with meaning./#/
+What is tail in circular linked list?/
+Image result for tail in circular doubly linked list/
+Head will point to the first element of the list, and tail will point to the last element in the list./
+In the simple linked list, all the nodes will point to their next element and tail will point to null./
+The circular linked list is the collection of nodes in which tail node also point back to head node.#
