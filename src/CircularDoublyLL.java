@@ -37,21 +37,54 @@ public class CircularDoublyLL {
         }
     }
 
-    // public void displayAllPage() {
-    //     Node currentNode = head;
-    //     if (head == null) {
-    //         System.out.println("Page is empty!");
-    //     } else {
-    //         int pageNo = 1;
-    //         while (currentNode != tail) {
-    //             if (!currentNode.data.equals("/")) {
-    //                 System.out.println("Page " + pageNo + ": " + currentNode.data);
-    //                 pageNo++;
-    //             }
-    //             currentNode = currentNode.nextNode;
+    public void countofLines() {
+        NodeOfLines currentNode = head;
+        if (head == null) {
+            System.out.println("Page is empty!");
+        } else {
+            int pageNo = 1;
+            while (currentNode != tail) {
+                if (!currentNode.dataL.equals("#")) {
+                    pageNo++;
+                }
+                currentNode = currentNode.nextNodeL;
+            }
+            System.out.println(pageNo + " Lines");
+        }
+    }
 
-    //         }
-    //         System.out.println("Page " + pageNo + ": " + currentNode.data);
-    //     }
+    public void showNTHlines(int x) {
+        NodeOfLines currentNode = head;
+        if (head == null) {
+            System.out.println("Page is empty!");
+        } else {
+            int pageNo = 1;
+            do {
+                if (!currentNode.dataL.equals("#")) {
+                    System.out.println("Line " + pageNo + ": " + currentNode.dataL);
+                    pageNo++;
+                }
+                currentNode = currentNode.nextNodeL;
+
+            } while (pageNo <= x);
+        }
+    }
+
+    // public void displayAllPage() {
+    // Node currentNode = head;
+    // if (head == null) {
+    // System.out.println("Page is empty!");
+    // } else {
+    // int pageNo = 1;
+    // while (currentNode != tail) {
+    // if (!currentNode.data.equals("/")) {
+    // System.out.println("Page " + pageNo + ": " + currentNode.data);
+    // pageNo++;
+    // }
+    // currentNode = currentNode.nextNode;
+
+    // }
+    // System.out.println("Page " + pageNo + ": " + currentNode.data);
+    // }
     // }
 }

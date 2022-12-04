@@ -8,4 +8,11 @@ What is tail in circular linked list?/
 Image result for tail in circular doubly linked list/
 Head will point to the first element of the list, and tail will point to the last element in the list./
 In the simple linked list, all the nodes will point to their next element and tail will point to null./
-The circular linked list is the collection of nodes in which tail node also point back to head node.#
+The circular linked list is the collection of nodes in which tail node also point back to head node./#/
+Tasks accompanying and related to programming include testing, debugging, source code maintenance,/
+implementation of build systems, and management of derived artifacts, such as the machine code of computer/
+programs.These might be considered part of the programming process, but often the term software development/
+is used for this larger process with the term programming, implementation, or coding reserved for the actual/
+writing of code. Software engineering combines engineering techniques with software development practices./
+Reverse engineering is a related process used by designers, analysts, and programmers to understand an/
+existing program and re-implement its function/#
