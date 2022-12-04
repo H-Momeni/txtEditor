@@ -21,7 +21,8 @@ public class OnePage {
         ////////////// tozihat barname
         System.out.println(
                 "welcome!\nThis is a text editing program that has various features. To use any feature, you must enter its code");
-        System.out.println("1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines");
+        System.out.println(
+                "1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace");
 
         //////////////
         CircularDoublyLLPage text = new CircularDoublyLLPage(); // change** cir...page
@@ -54,6 +55,7 @@ public class OnePage {
         }
         ////////////// save line ha dar linked list marbot be safhe
         String[] line;
+        String[] line1;
         String str;
         int j = 0;
         while (j != countOfPage) {
@@ -70,10 +72,10 @@ public class OnePage {
         }
         /////////////
 
-        System.out.println("This file has " + countOfPage + " pages. Which page do you want?");
+        System.out.print("This file has " + countOfPage + " pages. Which page do you want?");
         int safhe = input.nextInt();
-        int nextPage=safhe;
-        int lastPage=safhe;
+        int changePage = safhe;
+
         System.out.println("Page: " + safhe);
         present = linesOFPage[safhe - 1];
         linesOFPage[safhe - 1].displayPage();
@@ -95,24 +97,59 @@ public class OnePage {
                     }
                 }
             } else if (dastoor == 2) {
-                int q = nextPage + 1;
+                int q = changePage + 1;
                 System.out.println("Page: " + q);
-                present = linesOFPage[nextPage];
+                present = linesOFPage[changePage];
                 present.displayPage();
-                nextPage++;
+                changePage++;
             } else if (dastoor == 3) {
-                int p = lastPage - 1;
+                int p = changePage - 1;
                 System.out.println("Page: " + p);
-                present = linesOFPage[lastPage-2];
+                present = linesOFPage[changePage - 2];
                 present.displayPage();
-                lastPage--;
-            } else if(dastoor==4){
+                changePage--;
+            } else if (dastoor == 4) {
                 present.countofLines();
-            }else if(dastoor==5){
+            } else if (dastoor == 5) {
                 System.out.print("How many lines do you want to see?");
-                int x=input.nextInt();
+                int x = input.nextInt();
                 present.showNTHlines(x);
+            } else if (dastoor == 6) {
+                System.out.println("Page: " + changePage);
+                String append = input.nextLine();
+                // System.out.println(append);
+                int count = 0;
+                while (count != 1) {
+                    line = append.split("/");
+                    for (String a : line) {
+                        present.insertLastL(a);
+                    }
+                    count++;
+                }
+                present.displayPage();
+            } else if (dastoor == 7) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+                System.out.println("Enter the line number and text:");
+                int x = input.nextInt();
+                String matn = input.nextLine();
+                System.out.println("Page: " + changePage);
+                present.insert(matn, x - 1);
+                present.displayPage();
+            } else if (dastoor == 8) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+                System.out.println("Enter the line number:");
+                int x = input.nextInt();
+                System.out.println("Page: " + changePage);
+                present.remove(x + 1);
+                present.displayPage();
+            } else if (dastoor == 9) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+                System.out.println("Enter the line number and text:");
+                int x = input.nextInt();
+                String matn = input.nextLine();
+                present.remove(x + 1);
+                present.insert(matn, x - 1);
+                System.out.println("Page: " + changePage);
+                present.displayPage();
             }
+
         }
         // Page.displayPage();
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++FINISH");
