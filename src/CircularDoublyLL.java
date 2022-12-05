@@ -1,4 +1,4 @@
-import java.rmi.Remote;
+
 
 public class CircularDoublyLL {
     public NodeOfLines head = null;
@@ -123,7 +123,7 @@ public class CircularDoublyLL {
         int[] ans = new int[20];
         int[] empty = { -1 };
         for (int z = 0; z < linesOFPage.countofLines(); z++) {
-            i++;
+            
             if (temp.dataL.equals(matn)) {
                 ans[found] = z;
                 found++;

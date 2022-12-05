@@ -22,7 +22,7 @@ public class OnePage {
         System.out.println(
                 "welcome!\nThis is a text editing program that has various features. To use any feature, you must enter its code");
         System.out.println(
-                "1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n");
+                "0.end\n1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n");
 
         //////////////
         CircularDoublyLLPage text = new CircularDoublyLLPage(); // change** cir...page
@@ -47,7 +47,6 @@ public class OnePage {
                 k++;
             }
         }
-        // System.out.println(countOfPage);
 
         ////////////// ejad arraye ey az linked list dakhel safheha be andaze safahat
         for (int i = 0; i <= countOfPage; i++) {
@@ -75,6 +74,11 @@ public class OnePage {
         System.out.print("This file has " + countOfPage + " pages. Which page do you want?");
         int safhe = input.nextInt();
         int changePage = safhe;
+        while (safhe < 1 || countOfPage < safhe) {
+            System.out.println("Please enter an existing page. ");
+            safhe = input.nextInt();
+            changePage = safhe;
+        }
 
         System.out.println("Page: " + safhe);
         present = linesOFPage[safhe - 1];
@@ -88,26 +92,13 @@ public class OnePage {
             if (dastoor == 0) {
                 end = 1;
             } else if (dastoor == 1) {
-                // WHERE
-                for (int i = 0; i < countOfPage; i++) {
-                    CircularDoublyLL now = linesOFPage[i];
-                    if (present == now) {
-                        System.out.print("Page: ");
-                        System.out.println(i + 1);
-                    }
-                }
+                text.where(present);
             } else if (dastoor == 2) {
-                int q = changePage + 1;
-                System.out.println("Page: " + q);
-                present = linesOFPage[changePage];
+                present = text.nextPage(present);
                 present.displayPage();
-                changePage++;
             } else if (dastoor == 3) {
-                int p = changePage - 1;
-                System.out.println("Page: " + p);
-                present = linesOFPage[changePage - 2];
+                present = text.previousPage(present,countOfPage);
                 present.displayPage();
-                changePage--;
             } else if (dastoor == 4) {
                 int x = present.countofLines();
                 System.out.println(x + " Lines");
@@ -167,7 +158,7 @@ public class OnePage {
                     khat = linesOFPage[i].find(linesOFPage[i], matn);
                     // System.out.println(khat[0]+" "+khat[1]+" "+khat[2]);
                     for (int z = 0; z < khat.length; z++) {
-                        if (khat[z]> 0)
+                        if (khat[z] > 0)
                             System.out.println(" line->" + khat[z] + "\n");
                     }
 
