@@ -90,27 +90,43 @@ public class OnePage {
             System.out.print("----------Please enter the code:");
             int dastoor = input.nextInt();
             if (dastoor == 0) {
+                // end program
                 end = 1;
+
             } else if (dastoor == 1) {
+                // where page
                 text.where(present);
+
             } else if (dastoor == 2) {
+                // next page
                 present = text.nextPage(present);
                 present.displayPage();
+                changePage++;
+
             } else if (dastoor == 3) {
-                present = text.previousPage(present,countOfPage);
+                // last page
+                present = text.previousPage(present, countOfPage);
                 present.displayPage();
+                changePage--;
+
             } else if (dastoor == 4) {
+                // count lines each page
                 int x = present.countofLines();
                 System.out.println(x + " Lines");
 
             } else if (dastoor == 5) {
+                // show nth line
                 System.out.print("How many lines do you want to see?");
                 int x = input.nextInt();
+                while (x < 1 || x > present.countofLines()) {
+                    System.out.println("Please enter an existing line.");
+                    x = input.nextInt();
+                }
                 present.showNTHlines(x);
+
             } else if (dastoor == 6) {
-                System.out.println("Page: " + changePage);
+                // append to the end of the text
                 String append = input.nextLine();
-                // System.out.println(append);
                 int count = 0;
                 while (count != 1) {
                     line = append.split("/");
@@ -119,28 +135,61 @@ public class OnePage {
                     }
                     count++;
                 }
+                System.out.println("Page: " + changePage);
                 present.displayPage();
-            } else if (dastoor == 7) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+
+            } else if (dastoor == 7) {
+                // insert to specific line
                 System.out.println("Enter the line number and text:");
                 int x = input.nextInt();
                 String matn = input.nextLine();
+                while (x < 1 || x > present.countofLines() + 1) {
+                    System.out.println("Please enter an existing line.");
+                    x = input.nextInt();
+                    matn = input.nextLine();
+                }
+                if (x == present.countofLines() + 1) {
+                    present.insertLastL(matn);
+                } else if (x == 1) {
+                    present.insert(matn, x);
+                } else {
+                    present.insert(matn, x - 1);
+                }
                 System.out.println("Page: " + changePage);
-                present.insert(matn, x - 1);
                 present.displayPage();
-            } else if (dastoor == 8) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
-                System.out.println("Enter the line number:");
-                int x = input.nextInt();
-                System.out.println("Page: " + changePage);
-                present.remove(x + 1);
-                present.displayPage();
-            } else if (dastoor == 9) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+
+            } else if (dastoor == 8) {
+                // remove a line
+                int z = present.countofLines();
+                if (present.countofLines() == 0) {
+                    System.out.println("This page has no lines.");
+                } else {
+                    System.out.println("Enter the line number:");
+                    int x = input.nextInt();
+                    while (x < 1 || x > present.countofLines()) {
+                        System.out.println("Please enter an existing line.");
+                        x = input.nextInt();
+                    }
+                    present.remove(x, z);
+                    System.out.println("Page: " + changePage);
+                    present.displayPage();
+                }
+
+            } else if (dastoor == 9) { 
+                // replace ->1 khat hazf mishe 1 khat dige miad jaye oon
                 System.out.println("Enter the line number and text:");
+                int z = present.countofLines();
                 int x = input.nextInt();
                 String matn = input.nextLine();
-                matn = "\n" + matn;
-                present.replace(present, matn, x);
+                while (x < 1 || x > present.countofLines()) {
+                    System.out.println("Please enter an existing line.");
+                    x = input.nextInt();
+                    matn = input.nextLine();
+                }
+                present.replace(present, matn, x, z);
                 System.out.println("Page: " + changePage);
                 present.displayPage();
+
             } else if (dastoor == 10) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
                 System.out.println("Enter the line numbers:");
                 int x = input.nextInt();

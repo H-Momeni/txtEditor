@@ -1,5 +1,3 @@
-
-
 public class CircularDoublyLL {
     public NodeOfLines head = null;
     NodeOfLines tail = null;
@@ -74,29 +72,54 @@ public class CircularDoublyLL {
         NodeOfLines temp = new NodeOfLines();
         temp = head;
         newNode.dataL = matn;
-        for (int i = 1; i < x; i++) {
-            temp = temp.nextNodeL;
+        if (x == 1) {
+            newNode.nextNodeL = temp;
+            newNode.prevNodeL = tail;
+            temp.prevNodeL = newNode;
+            tail.nextNodeL = newNode;
+            head = newNode;
+        } else {
+            for (int i = 1; i < x; i++) {
+                temp = temp.nextNodeL;
+            }
+            newNode.nextNodeL = temp.nextNodeL;
+            (temp.nextNodeL).prevNodeL = newNode;
+            temp.nextNodeL = newNode;
+            newNode.prevNodeL = temp;
         }
-        newNode.nextNodeL = temp.nextNodeL;
-        (temp.nextNodeL).prevNodeL = newNode;
-        temp.nextNodeL = newNode;
-        newNode.prevNodeL = temp;
     }
 
-    public void remove(int x) {
+    public void remove(int x, int z) {
         NodeOfLines temp = new NodeOfLines();
         temp = head;
-        for (int i = 2; i < x; i++) {
-            temp = temp.nextNodeL;
+        if (x == 1 && z == 1) {
+            head = null;
+        } else if (x == 1 && z != 1) {
+            (temp.nextNodeL).prevNodeL = tail;
+            tail.nextNodeL = temp.nextNodeL;
+            head = temp.nextNodeL;
+        } else if (x == z) {
+            (tail.prevNodeL).nextNodeL = head;
+            head.prevNodeL = tail.prevNodeL;
+            tail = tail.prevNodeL;
+        } else {
+            for (int i = 1; i < x; i++) {
+                temp = temp.nextNodeL;
+            }
+            temp.nextNodeL.prevNodeL = temp.prevNodeL;
+            temp.prevNodeL.nextNodeL = temp.nextNodeL;
         }
-        temp.nextNodeL.prevNodeL = temp.prevNodeL;
-        temp.prevNodeL.nextNodeL = temp.nextNodeL;
-
     }
 
-    public void replace(CircularDoublyLL present, String matn, int x) {
-        present.remove(x + 1);
-        present.insert(matn, x - 1);
+    public void replace(CircularDoublyLL present, String matn, int x, int z) {
+        present.remove(x, z);
+        if (x == present.countofLines() + 1) {
+            present.insertLastL(matn);
+        } else if (x == 1) {
+            present.insert(matn, x);
+        } else {
+            present.insert(matn, x - 1);
+        }
     }
 
     public void swap(int x, int y) {
@@ -123,7 +146,7 @@ public class CircularDoublyLL {
         int[] ans = new int[20];
         int[] empty = { -1 };
         for (int z = 0; z < linesOFPage.countofLines(); z++) {
-            
+
             if (temp.dataL.equals(matn)) {
                 ans[found] = z;
                 found++;
