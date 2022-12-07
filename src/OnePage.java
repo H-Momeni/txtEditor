@@ -150,10 +150,8 @@ public class OnePage {
                 }
                 if (x == present.countofLines() + 1) {
                     present.insertLastL(matn);
-                } else if (x == 1) {
-                    present.insert(matn, x);
                 } else {
-                    present.insert(matn, x - 1);
+                    present.insert(matn, x);
                 }
                 System.out.println("Page: " + changePage);
                 present.displayPage();
@@ -175,8 +173,8 @@ public class OnePage {
                     present.displayPage();
                 }
 
-            } else if (dastoor == 9) { 
-                // replace ->1 khat hazf mishe 1 khat dige miad jaye oon
+            } else if (dastoor == 9) {
+                // replace 
                 System.out.println("Enter the line number and text:");
                 int z = present.countofLines();
                 int x = input.nextInt();
@@ -190,7 +188,8 @@ public class OnePage {
                 System.out.println("Page: " + changePage);
                 present.displayPage();
 
-            } else if (dastoor == 10) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+            } else if (dastoor == 10) { 
+                //swap
                 System.out.println("Enter the line numbers:");
                 int x = input.nextInt();
                 int y = input.nextInt();

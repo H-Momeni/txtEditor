@@ -79,7 +79,7 @@ public class CircularDoublyLL {
             tail.nextNodeL = newNode;
             head = newNode;
         } else {
-            for (int i = 1; i < x; i++) {
+            for (int i = 1; i < x - 1; i++) {
                 temp = temp.nextNodeL;
             }
             newNode.nextNodeL = temp.nextNodeL;
@@ -112,13 +112,26 @@ public class CircularDoublyLL {
     }
 
     public void replace(CircularDoublyLL present, String matn, int x, int z) {
+        int count = 0;
+        String[] line;
         present.remove(x, z);
         if (x == present.countofLines() + 1) {
-            present.insertLastL(matn);
-        } else if (x == 1) {
-            present.insert(matn, x);
+            while (count != 1) {
+                line = matn.split("/");
+                for (String a : line) {
+                    present.insertLastL(a);
+                }
+                count++;
+            }
         } else {
-            present.insert(matn, x - 1);
+            while (count != 1) {
+                line = matn.split("/");
+                for (String a : line) {
+                    present.insert(a, x);
+                    x++;
+                }
+                count++;
+            }
         }
     }
 
