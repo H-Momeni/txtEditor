@@ -1,4 +1,6 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
 import java.util.*;
 
 class Node {
@@ -22,7 +24,7 @@ public class OnePage {
         System.out.println(
                 "welcome!\nThis is a text editing program that has various features. To use any feature, you must enter its code");
         System.out.println(
-                "0.end\n1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n");
+                "0.end\n1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n12.find and replace\n13.save\n");
 
         //////////////
         CircularDoublyLLPage text = new CircularDoublyLLPage(); // change** cir...page
@@ -174,7 +176,7 @@ public class OnePage {
                 }
 
             } else if (dastoor == 9) {
-                // replace 
+                // replace
                 System.out.println("Enter the line number and text:");
                 int z = present.countofLines();
                 int x = input.nextInt();
@@ -188,8 +190,8 @@ public class OnePage {
                 System.out.println("Page: " + changePage);
                 present.displayPage();
 
-            } else if (dastoor == 10) { 
-                //swap
+            } else if (dastoor == 10) {
+                // swap
                 System.out.println("Enter the line numbers:");
                 int x = input.nextInt();
                 int y = input.nextInt();
@@ -197,23 +199,48 @@ public class OnePage {
                 System.out.println("Page: " + changePage);
                 present.displayPage();
 
-            } else if (dastoor == 11) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
-
+            } else if (dastoor == 11) {
+                // find
                 System.out.println("Enter the text:");
                 String matn = input.nextLine();
-                int[] khat = new int[100];
-                int counter = 0;
+                matn = matn.trim();
                 for (int i = 0; i < countOfPage; i++) {
-                    System.out.println("page: "+(i+1) + "_____________________________________________________________________________");
+                    System.out.println("page: " + (i + 1)
+                            + "_____________________________________________________________________________");
                     linesOFPage[i].find(linesOFPage[i], matn);
-
                 }
+
+            } else if (dastoor == 12) {
+                // find and replace
+                System.out.println("Enter the text:");
+                String matn = input.nextLine();
+                String jaygozin = input.nextLine();
+                matn = matn.trim();
+                jaygozin = jaygozin.trim();
+                for (int i = 0; i < countOfPage; i++) {
+                    System.out.println("page: " + (i + 1)
+                            + "_____________________________________________________________________________");
+                    linesOFPage[i].findANDreplace(linesOFPage[i], matn, jaygozin);
+                }
+
+            } else if (dastoor == 13) {
+                // save
+                String matn = "";
+                for (int i = 0; i < countOfPage; i++) {
+                    matn = matn + linesOFPage[i].save(linesOFPage[i]) + "#/";
+                }
+                Path path = Paths.get("C:\\Users\\ACER\\OneDrive\\Desktop\\txtEditor\\src\\save.txt");
+                try {
+                    Files.writeString(path, matn,
+                            StandardCharsets.UTF_8);
+                    System.out.println("Saved successfully!");
+                } catch (IOException ex) {
+                    System.out.print("Invalid Path");
+                }
+
             }
 
         }
-        // Page.displayPage();
         System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++FINISH");
-        // text.displayAllPage();
-
     }
 }

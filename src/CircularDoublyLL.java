@@ -155,72 +155,41 @@ public class CircularDoublyLL {
     public void find(CircularDoublyLL linesOFPage, String matn) {
         NodeOfLines temp = new NodeOfLines();
         temp = head;
-        int found = 0;
-        int[] ans = new int[20];
-        int[] empty = { -1 };
-
-        // if (head != null) {
-        //     for (int i = -1; (i = head.dataL.indexOf(matn, i + 1)) != -1; i++) {
-        //         System.out.println("Line:1" + head.dataL + "-->index:" + i);
-        //     }
-        // }
-        // if (head != null && head.dataL.equals(matn)) {
-        // ans[found] = 1;
-        // found++;
-
-        // }
-        
         for (int z = 0; z < linesOFPage.countofLines(); z++) {
             for (int i = -1; (i = temp.dataL.indexOf(matn, i + 1)) != -1; i++) {
-                System.out.println("Line:"+(z+1) + temp.dataL + "-->index:" + i);
+                System.out.println("Line:" + (z + 1) + temp.dataL + "-->index:" + i);
             }
             temp = temp.nextNodeL;
-
-
-            
             if (temp == head) {
                 break;
             }
         }
-        
-
-
-
-
-        // for (int z = 0; z < linesOFPage.countofLines(); z++) {
-
-        //     if (temp.dataL.equals(matn)) {
-        //         ans[found] = z;
-        //         found++;
-        //     }
-        //     temp = temp.nextNodeL;
-        //     if (temp == this.head) {
-        //         break;
-        //     }
-        // }
-        // if (found == 0) {
-        //     return empty;
-        // } else {
-        //     return ans;
-        // }
-
     }
 
-    // public void displayAllPage() {
-    // Node currentNode = head;
-    // if (head == null) {
-    // System.out.println("Page is empty!");
-    // } else {
-    // int pageNo = 1;
-    // while (currentNode != tail) {
-    // if (!currentNode.data.equals("/")) {
-    // System.out.println("Page " + pageNo + ": " + currentNode.data);
-    // pageNo++;
-    // }
-    // currentNode = currentNode.nextNode;
+    public void findANDreplace(CircularDoublyLL linesOFPage, String matn, String jaygozin) {
+        NodeOfLines temp = new NodeOfLines();
+        temp = head;
+        for (int z = 0; z < linesOFPage.countofLines(); z++) {
+            temp.dataL = temp.dataL.replaceAll(matn, jaygozin);
+            System.out.println("Line:" + (z + 1) + temp.dataL);
+            temp = temp.nextNodeL;
+            if (temp == head) {
+                break;
+            }
+        }
+    }
 
-    // }
-    // System.out.println("Page " + pageNo + ": " + currentNode.data);
-    // }
-    // }
+    public String save(CircularDoublyLL linesOFPage) {
+        NodeOfLines temp = new NodeOfLines();
+        String matn = "";
+        temp = head;
+        for (int z = 0; z < linesOFPage.countofLines(); z++) {
+            matn = matn + temp.dataL+"/";
+            temp = temp.nextNodeL;
+            if (temp == head) {
+                break;
+            }
+        }
+        return matn;
+    }
 }
