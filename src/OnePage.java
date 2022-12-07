@@ -196,23 +196,16 @@ public class OnePage {
                 present.swap(x, y);
                 System.out.println("Page: " + changePage);
                 present.displayPage();
+
             } else if (dastoor == 11) { // dastor halate mokhtalefi dard ezafe shodan be aval akhar safhe khali
+
                 System.out.println("Enter the text:");
                 String matn = input.nextLine();
-                int[] khat = new int[50];
+                int[] khat = new int[100];
                 int counter = 0;
                 for (int i = 0; i < countOfPage; i++) {
-                    System.out.println(i + "\t");
-                    khat = linesOFPage[i].find(linesOFPage[i], matn);
-                    // System.out.println(khat[0]+" "+khat[1]+" "+khat[2]);
-                    for (int z = 0; z < khat.length; z++) {
-                        if (khat[z] > 0)
-                            System.out.println(" line->" + khat[z] + "\n");
-                    }
-
-                    // if(khat==-1){
-                    // System.out.println("oh");
-                    // }
+                    System.out.println("page: "+(i+1) + "_____________________________________________________________________________");
+                    linesOFPage[i].find(linesOFPage[i], matn);
 
                 }
             }

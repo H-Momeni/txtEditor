@@ -152,28 +152,57 @@ public class CircularDoublyLL {
 
     }
 
-    public int[] find(CircularDoublyLL linesOFPage, String matn) {
+    public void find(CircularDoublyLL linesOFPage, String matn) {
         NodeOfLines temp = new NodeOfLines();
         temp = head;
         int found = 0;
         int[] ans = new int[20];
         int[] empty = { -1 };
-        for (int z = 0; z < linesOFPage.countofLines(); z++) {
 
-            if (temp.dataL.equals(matn)) {
-                ans[found] = z;
-                found++;
+        // if (head != null) {
+        //     for (int i = -1; (i = head.dataL.indexOf(matn, i + 1)) != -1; i++) {
+        //         System.out.println("Line:1" + head.dataL + "-->index:" + i);
+        //     }
+        // }
+        // if (head != null && head.dataL.equals(matn)) {
+        // ans[found] = 1;
+        // found++;
+
+        // }
+        
+        for (int z = 0; z < linesOFPage.countofLines(); z++) {
+            for (int i = -1; (i = temp.dataL.indexOf(matn, i + 1)) != -1; i++) {
+                System.out.println("Line:"+(z+1) + temp.dataL + "-->index:" + i);
             }
             temp = temp.nextNodeL;
-            if (temp == this.head) {
+
+
+            
+            if (temp == head) {
                 break;
             }
         }
-        if (found == 0) {
-            return empty;
-        } else {
-            return ans;
-        }
+        
+
+
+
+
+        // for (int z = 0; z < linesOFPage.countofLines(); z++) {
+
+        //     if (temp.dataL.equals(matn)) {
+        //         ans[found] = z;
+        //         found++;
+        //     }
+        //     temp = temp.nextNodeL;
+        //     if (temp == this.head) {
+        //         break;
+        //     }
+        // }
+        // if (found == 0) {
+        //     return empty;
+        // } else {
+        //     return ans;
+        // }
 
     }
 
