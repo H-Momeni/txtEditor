@@ -55,14 +55,32 @@ public class CircularDoublyLLPage {
             pageNo++;
             temp = temp.nextNode;
         }
-         if (present == head.data) {
-            pageNo =countOfPage + 1;
+        if (present == head.data) {
+            pageNo = countOfPage + 1;
         }
         temp = temp.prevNode;
         present = temp.data;
-       
+
         System.out.println("Page: " + (pageNo - 1));
         return present;
+    }
+
+    public void displayAllPage() {
+        Node currentNode = new Node();
+        currentNode = head;
+        if (head == null) {
+            System.out.println("text is empty!");
+        } else {
+            int pageNo = 1;
+            while (currentNode != tail) {
+                System.out.println("***********Page " + pageNo + ": ");
+                currentNode.data.displayPage();
+                pageNo++;
+                currentNode = currentNode.nextNode;
+            }
+            System.out.println("Page: " + pageNo);
+            currentNode.data.displayPage();
+        }
     }
 
 }

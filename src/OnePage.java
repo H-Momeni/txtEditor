@@ -24,15 +24,17 @@ public class OnePage {
         System.out.println(
                 "welcome!\nThis is a text editing program that has various features. To use any feature, you must enter its code");
         System.out.println(
-                "0.end\n1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n12.find and replace\n13.save\n");
+                "0.end\n1.where\n2.next page\n3.previous page\n4.lines\n5.show n lines\n6.append\n7.insert\n8.remove\n9.replace\n10.swap\n11.find\n12.find and replace\n13.undo\n14.redo\n15.save\n");
 
         //////////////
-        CircularDoublyLLPage text = new CircularDoublyLLPage(); // change** cir...page
+        CircularDoublyLLPage text = new CircularDoublyLLPage(); 
+        CircularDoublyLLPage[] matn=new CircularDoublyLLPage[10];
+
         CircularDoublyLL[] linesOFPage;
         CircularDoublyLL present;
-        linesOFPage = new CircularDoublyLL[100]; // 100 be mani tedad khotot nist balke had balaye safhe ra neshan
-                                                 // midahad
-
+        linesOFPage = new CircularDoublyLL[100]; // 100 tedad khotot nist balke had balaye safhe ra neshan midahad
+        //Stackk undo = new Stackk();  //undo ta 10 ta
+       // Stackk redo = new Stackk();  //redo ta 10 ta
         ////////////// read a txt file
         Scanner scanner = new Scanner(new File("C:\\Users\\ACER\\OneDrive\\Desktop\\txtEditor\\src\\Example.txt"));
         String txt = scanner.useDelimiter("\\A").next();
@@ -73,6 +75,7 @@ public class OnePage {
         }
         /////////////
 
+        undo.push(text);
         System.out.print("This file has " + countOfPage + " pages. Which page do you want?");
         int safhe = input.nextInt();
         int changePage = safhe;
@@ -91,6 +94,10 @@ public class OnePage {
         while (end == 0) {
             System.out.print("----------Please enter the code:");
             int dastoor = input.nextInt();
+            while (dastoor < 0 || dastoor > 15) {
+                System.out.print("Please enter the correct code:");
+                dastoor = input.nextInt();
+            }
             if (dastoor == 0) {
                 // end program
                 end = 1;
@@ -224,6 +231,23 @@ public class OnePage {
                 }
 
             } else if (dastoor == 13) {
+                //undo.printerarr();
+                // undo
+               // CircularDoublyLLPage text1=new CircularDoublyLLPage();
+                //text = ;
+                //redo.push(undo.pop());
+                System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
+               // text.displayAllPage();
+                for(int i=0;i<=2;i++){
+                    
+                undo.pop();  //halghe bara kol aza ye stack
+                System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
+                //text = undo.peek();
+                //undo.pop().displayAllPage();
+            }
+                // System.out.println( undo.peek());
+
+            } else if (dastoor == 15) {
                 // save
                 String matn = "";
                 for (int i = 0; i < countOfPage; i++) {
@@ -237,6 +261,11 @@ public class OnePage {
                 } catch (IOException ex) {
                     System.out.print("Invalid Path");
                 }
+
+            }
+            if (6 <= dastoor && dastoor <= 10 || dastoor == 12) {
+                //text.displayAllPage();
+                undo.push(text);
 
             }
 
