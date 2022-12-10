@@ -19,6 +19,8 @@ public class OnePage {
 
     public static void main(String[] args) throws IOException {
         Scanner input = new Scanner(System.in);
+        int t=0;
+        Stackk undo=new Stackk();
 
         ////////////// tozihat barname
         System.out.println(
@@ -28,9 +30,14 @@ public class OnePage {
 
         //////////////
         CircularDoublyLLPage text = new CircularDoublyLLPage(); 
-        CircularDoublyLLPage[] matn=new CircularDoublyLLPage[10];
+        CircularDoublyLLPage[] matnehame=new CircularDoublyLLPage[10];
+        int shomarande=0;
+        for(int i=0;i<10;i++){
+            matnehame[i]=new CircularDoublyLLPage();
+        }
 
         CircularDoublyLL[] linesOFPage;
+        CircularDoublyLL[][] lineForundo=new CircularDoublyLL[10][100];
         CircularDoublyLL present;
         linesOFPage = new CircularDoublyLL[100]; // 100 tedad khotot nist balke had balaye safhe ra neshan midahad
         //Stackk undo = new Stackk();  //undo ta 10 ta
@@ -42,8 +49,11 @@ public class OnePage {
         ////////////// be dast avardan tedad safahat va makane hash ha
         int countOfPage = 0;
         int[] indexOFhash = new int[100];
+        int [] indexhashhaUNDO=new int [100];
         indexOFhash[0] = 0;
+        indexhashhaUNDO[0]=0;
         int k = 1; // shomarande index hash ha
+        int kk=1;
         for (int i = 0; i < txt.length(); i++) {
             if (txt.charAt(i) == '#') {
                 indexOFhash[k] = i;
@@ -60,7 +70,9 @@ public class OnePage {
         String[] line;
         String[] line1;
         String str;
+        String str1;
         int j = 0;
+        int e=0;
         while (j != countOfPage) {
             str = txt.substring(indexOFhash[j], indexOFhash[j + 1]);
             line = str.split("/");
@@ -75,7 +87,7 @@ public class OnePage {
         }
         /////////////
 
-        undo.push(text);
+       // undo.push(text);
         System.out.print("This file has " + countOfPage + " pages. Which page do you want?");
         int safhe = input.nextInt();
         int changePage = safhe;
@@ -231,20 +243,25 @@ public class OnePage {
                 }
 
             } else if (dastoor == 13) {
+                
+                
                 //undo.printerarr();
                 // undo
                // CircularDoublyLLPage text1=new CircularDoublyLLPage();
                 //text = ;
                 //redo.push(undo.pop());
-                System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
+              //  System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
                // text.displayAllPage();
-                for(int i=0;i<=2;i++){
+                // for(int i=0;i<matnehame.length;i++){
+                //     matnehame[i].displayAllPage();
+                     //System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]");
+
                     
                 undo.pop();  //halghe bara kol aza ye stack
-                System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
+                //System.out.println("]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"+undo.size());
                 //text = undo.peek();
                 //undo.pop().displayAllPage();
-            }
+            ///}
                 // System.out.println( undo.peek());
 
             } else if (dastoor == 15) {
@@ -265,7 +282,43 @@ public class OnePage {
             }
             if (6 <= dastoor && dastoor <= 10 || dastoor == 12) {
                 //text.displayAllPage();
-                undo.push(text);
+                //undo.push(text);
+                String matn = "";
+                for (int i = 0; i < countOfPage; i++) {
+                    matn = matn + linesOFPage[i].save(linesOFPage[i]) + "#/";
+                }
+
+                for (int i = 0; i < matn.length(); i++) {
+                    if (matn.charAt(i) == '#') {
+                        indexhashhaUNDO[kk] = i;
+                        kk++;
+                    }
+                }
+
+                for(int l=0;l<10;l++){
+                for (int i = 0; i <= countOfPage; i++) {
+                    lineForundo[l][i] = new CircularDoublyLL();
+                }}
+                
+                while (e != countOfPage) {
+                    str1 = matn.substring(indexhashhaUNDO[e], indexhashhaUNDO[e + 1]);
+                    line1 = str1.split("/");
+                    for (String a : line1) {
+                        lineForundo[t][e].insertLastL(a);
+                    }
+                    e++;
+                }
+                
+
+                for (int i = 0; i < countOfPage; i++) {
+                    matnehame[t].insertLast(lineForundo[t][i]);
+                }
+                //matnehame[t].displayAllPage();
+                undo.push(matnehame[t]);
+                t++;
+            // matnehame[shomarande]=text;
+                
+            //     shomarande++;
 
             }
 

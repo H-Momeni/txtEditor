@@ -2,6 +2,8 @@ public class CircularDoublyLLPage {
     Node head = null;
     Node tail = null;
 
+    
+
     public void insertLast(CircularDoublyLL Line) {
         Node newNode = new Node();
         newNode.data = Line;
