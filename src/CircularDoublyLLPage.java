@@ -2,8 +2,6 @@ public class CircularDoublyLLPage {
     Node head = null;
     Node tail = null;
 
-    
-
     public void insertLast(CircularDoublyLL Line) {
         Node newNode = new Node();
         newNode.data = Line;
@@ -80,9 +78,54 @@ public class CircularDoublyLLPage {
                 pageNo++;
                 currentNode = currentNode.nextNode;
             }
-            System.out.println("Page: " + pageNo);
+            System.out.println("***********Page " + pageNo + ": ");
             currentNode.data.displayPage();
         }
     }
+
+    public void insertPAGE(CircularDoublyLL safhe, int x) {
+        Node newNode = new Node();
+        Node temp = new Node();
+        temp = head;
+        newNode.data = safhe;
+        if (x == 1) {
+            newNode.nextNode = temp;
+            newNode.prevNode = tail;
+            temp.prevNode = newNode;
+            tail.nextNode = newNode;
+            head = newNode;
+        } else {
+            for (int i = 1; i < x - 1; i++) {
+                temp = temp.nextNode;
+            }
+            newNode.nextNode = temp.nextNode;
+            (temp.nextNode).prevNode = newNode;
+            temp.nextNode = newNode;
+            newNode.prevNode = temp;
+        }
+    }
+
+    public void DeletPAGE(int x, int z) {
+        Node temp = new Node();
+        temp = head;
+        if (x == 1 && z == 1) {
+            head = null;
+        } else if (x == 1 && z != 1) {
+            (temp.nextNode).prevNode = tail;
+            tail.nextNode = temp.nextNode;
+            head = temp.nextNode;
+        } else if (x == z) {
+            (tail.prevNode).nextNode = head;
+            head.prevNode = tail.prevNode;
+            tail = tail.prevNode;
+        } else {
+            for (int i = 1; i < x; i++) {
+                temp = temp.nextNode;
+            }
+            temp.nextNode.prevNode = temp.prevNode;
+            temp.prevNode.nextNode = temp.nextNode;
+        }
+    }
+
 
 }

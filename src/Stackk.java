@@ -20,8 +20,11 @@ public class Stackk {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-         
-        arr[0].displayAllPage();
+        // for(int i=0;i<index;i++){
+        //     System.out.println(i+"    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        //     arr[i].displayAllPage();
+
+        // }
         return arr[--index];
        // arr[index--].displayAllPage();
     }
