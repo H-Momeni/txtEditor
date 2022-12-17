@@ -17,10 +17,7 @@ public class CircularDoublyLL {
                 head.prevNodeL = newNode;
                 tail = newNode;
             }
-        } else {
-            int x = 0;
-        }
-
+        } 
     }
 
     public void displayPage() {
@@ -184,7 +181,7 @@ public class CircularDoublyLL {
         String matn = "";
         temp = head;
         for (int z = 0; z < linesOFPage.countofLines(); z++) {
-            matn = matn + temp.dataL+"/";
+            matn = matn + temp.dataL + "/";
             temp = temp.nextNodeL;
             if (temp == head) {
                 break;

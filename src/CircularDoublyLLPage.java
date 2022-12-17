@@ -142,6 +142,4 @@ public class CircularDoublyLLPage {
         return currentNode.data;
     }
 
-
-
 }
