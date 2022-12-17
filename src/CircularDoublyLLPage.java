@@ -127,5 +127,21 @@ public class CircularDoublyLLPage {
         }
     }
 
+    public CircularDoublyLL showNTHpages(int x) {
+        Node currentNode = head;
+        if (head == null) {
+            System.out.println("Text is empty!");
+        } else {
+            int pageNo = 1;
+            do {
+                pageNo++;
+                currentNode = currentNode.nextNode;
+
+            } while (pageNo <= x);
+        }
+        return currentNode.data;
+    }
+
+
 
 }

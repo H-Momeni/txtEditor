@@ -21,6 +21,7 @@ public class OnePage {
         Scanner input = new Scanner(System.in);
         int shomarande = 0; // baraye shomordan dar undo
         Stackk undo = new Stackk();
+        Stackk redo = new Stackk();
 
         ////////////// tozihat barname
         System.out.println(
@@ -31,6 +32,7 @@ public class OnePage {
         //////////////
         CircularDoublyLLPage text = new CircularDoublyLLPage();
         CircularDoublyLLPage undoTEXT = new CircularDoublyLLPage();
+        CircularDoublyLLPage redoTEXT = new CircularDoublyLLPage();
         CircularDoublyLLPage[] matnehame = new CircularDoublyLLPage[30];
 
         for (int i = 0; i < 30; i++) {
@@ -253,17 +255,40 @@ public class OnePage {
 
             } else if (dastoor == 13) {
                 // undo
-                if (shomarande == 0 || shomarande == 1) {
+                if (undo.isEmpty() == true) {
                     System.out.println("Can not undo!");
                 } else {
-                    undo.pop();
-                    undoTEXT = undo.pop();
+
+                    undoTEXT = undo.pop(); // baraye avalin bar bayad dobar undo kard
+                    redo.push(undoTEXT);
                     undoTEXT.displayAllPage();
-                    present = lineForundo[shomarande - 2][changePage - 1];
+
+                    // undoTEXT.showNTHpages(changePage-1).displayPage();
+                    present = undoTEXT.showNTHpages(changePage - 1);
                     text.DeletPAGE(changePage, countOfPage);
-                    text.insertPAGE(lineForundo[shomarande - 2][changePage - 1], changePage);
+                    text.insertPAGE(undoTEXT.showNTHpages(changePage - 1), changePage);
+                    // System.out.println("*********************-------------------"+shomarande);
+                    // lineForundo[shomarande - 1][changePage - 1].displayPage();
+
+                    // System.out.println(
+                    //         "*********************-------------------*****************************************");
+                    // present.displayPage();
+
                 }
                 // text.displayAllPage();
+
+            } else if (dastoor == 14) {
+                // redo
+                if (undo.isEmpty() == true) {
+                    System.out.println("Can not undo!");
+                } else {
+                    redoTEXT = redo.pop();
+                    undo.push(redoTEXT);
+                    redoTEXT.displayAllPage();
+                    present = redoTEXT.showNTHpages(changePage - 1);
+                    text.DeletPAGE(changePage, countOfPage);
+                    text.insertPAGE(redoTEXT.showNTHpages(changePage - 1), changePage);
+                }
 
             } else if (dastoor == 15) {
                 // save
@@ -284,13 +309,10 @@ public class OnePage {
             if (6 <= dastoor && dastoor <= 10 || dastoor == 12) {
                 int kk = 1;
                 int e = 0;
-                // text.displayAllPage();
-                // undo.push(text);
                 String matn = "";
                 for (int i = 0; i < countOfPage; i++) {
                     matn = matn + linesOFPage[i].save(linesOFPage[i]) + "#/";
                 }
-
                 for (int i = 0; i < matn.length(); i++) {
                     if (matn.charAt(i) == '#') {
                         indexhashhaUNDO[kk] = i;
@@ -298,7 +320,6 @@ public class OnePage {
                         kk++;
                     }
                 }
-
                 while (e != countOfPage) {
                     str1 = matn.substring(indexhashhaUNDO[e], indexhashhaUNDO[e + 1]);
                     line1 = str1.split("/");
