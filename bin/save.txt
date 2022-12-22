@@ -3,11 +3,11 @@ This virtual glimpse into the cosmoss past is the result of CoDaIII, the third i
 Dawn in Project which traces the history of the universe, beginning with the cosmic dark ages about/
 10 million years after the Big Bang. At that point, hot gas produced at the very beginning of time,/
 about 13.8 billion years ago, had cooled to a featureless cloud devoid of light, says astronomer Paul/
-Shapiro of the University of Texas at Austin.document with meaning./#/
-What is tail in circular *********** list?/ Image in result for tail in circular doubly *********** list/ Image result for tail in circular doubly *********** list/
-Head will point to the first element of the list, and tail will point to the last element in the list./ Image result for tail in circular doubly *********** list 
-In the simple *********** list, all the nodes will point to their next element and tail will point to null./
-The circular *********** list is the collection of nodes in which tail node also point back to head node./ Image result for tail in circular doubly *********** list/#/
+Shapiro of the University of Texas at Austin.document with meaning./#/ Image in result for tail in circular doubly linked list/
+What is tail in circular linked list?/ Image in result for tail in circular doubly linked list/ Image result for tail in circular doubly linked list/
+Head will point to the first element of the list, and tail will point to the last element in the list./ Image result for tail in circular doubly linked list 
+In the simple linked list, all the nodes will point to their next element and tail will point to null./
+The circular linked list is the collection of nodes in which tail node also point back to head node./ Image result for tail in circular doubly linked list/ jhjhbjhjh/hubyhbgyugyugu/ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/#/
 Tasks accompanying and related to programming include testing, debugging, source code maintenance,/
 implementation of build systems, and management of derived artifacts, such as the machine code of computer/
 programs.These might be considered part of the programming process, but often the term software development/

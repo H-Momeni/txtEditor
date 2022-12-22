@@ -225,6 +225,11 @@ public class OnePage {
                     System.out.println("Enter the line numbers:");
                     int x = input.nextInt();
                     int y = input.nextInt();
+                    while (x < 1 || x > present.countofLines() || y < 1 || y > present.countofLines()) {
+                        System.out.println("Please enter an existing line.");
+                        x = input.nextInt();
+                        y = input.nextInt();
+                    }
                     present.swap(x, y);
                     System.out.println("Page: " + changePage);
                     present.displayPage();
