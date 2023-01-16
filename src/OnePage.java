@@ -4,9 +4,14 @@ import java.nio.file.*;
 import java.util.*;
 
 class Node {
+    public Node(int k, float[] point) {
+    }
     CircularDoublyLL data; // or object instead of string
     Node nextNode;
     Node prevNode;
+    public float[] point;
+    public Node left;
+    public Node right;
 }
 
 class NodeOfLines {
